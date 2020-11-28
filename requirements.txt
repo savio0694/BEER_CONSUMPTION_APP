@@ -4,3 +4,4 @@ pandas
 dash_table
 sklearn
 gunicorn
+dash-bootstrap-components
