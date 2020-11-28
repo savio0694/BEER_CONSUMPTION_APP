@@ -1,1 +1,1 @@
-web: gunicorn dashplotly-demo:app
+web: gunicorn app:server
