@@ -24,10 +24,8 @@ reg_target=beer_data.iloc[:,[6]]
 X_train, X_test, y_train, y_test = train_test_split(reg_data,reg_target,random_state=1,shuffle=True,test_size=0.1)
 Lreg = Ridge(alpha=0.5)
 Lreg.fit(X_train, y_train)
-y_pred=Lreg.predict(X_test.iloc[1:2,:])
-beer_data_trim=beer_data.iloc[1:15,:]
 
-table = dbc.Table.from_dataframe(beer_data_trim, striped=True, bordered=True, hover=True)
+
 
 app.layout = html.Div(children=[
 dbc.Container([
@@ -68,13 +66,17 @@ html.H5("CHOOSE DISTRIBUTION"),
             ]),
 
 dbc.Col(
-dbc.Table(
-    table,
-    bordered=True,
-    size='sm',
-    hover=True,
-    responsive=True,
-    striped=True,
+dash_table.DataTable(
+    id='table',
+    columns=[{"name": i, "id": i} for i in beer_data.columns],
+    data=beer_data.to_dict('records'),
+    page_size=15,
+     style_as_list_view=True,
+     style_data_conditional=[
+        {
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(248, 248, 248)'
+        }]
 )
       )
 
