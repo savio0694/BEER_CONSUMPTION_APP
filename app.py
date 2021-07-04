@@ -35,8 +35,8 @@ dbc.Row([
     dbc.Col([
 
 dbc.NavbarSimple(
-    brand="PREDICTING BEER CONSUMPTION",
-    brand_href="#",
+    brand="PREDICTING BEER CONSUMPTION" +" " + "(VIEW RAW DATA/ANALYSIS CLICK --> HERE)",
+    brand_href="https://nbviewer.jupyter.org/github/savio0694/SAO-PAULO-BEERCONSUMPITON-with-PYTHON/blob/main/Prediction%20%20of%20beer%20consumption.ipynb",
     color="success",
     dark=True,
 )])
@@ -47,7 +47,7 @@ dbc.NavbarSimple(
     dbc.Row([
 
     dbc.Col([
-html.H5("CHOOSE DISTRIBUTION"),
+#html.H5("CHOOSE DISTRIBUTION"),
 
             dcc.Dropdown(
                 id='hist-choice',
