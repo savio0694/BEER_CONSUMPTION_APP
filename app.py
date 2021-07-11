@@ -35,19 +35,66 @@ dbc.Row([
     dbc.Col([
 
 dbc.NavbarSimple(
-    brand="PREDICTING BEER CONSUMPTION" +" " + "(VIEW RAW DATA/ANALYSIS CLICK --> HERE)",
-    brand_href="https://nbviewer.jupyter.org/github/savio0694/SAO-PAULO-BEERCONSUMPITON-with-PYTHON/blob/main/Prediction%20%20of%20beer%20consumption.ipynb",
+    brand="PREDICTING BEER CONSUMPTION",
     color="success",
     dark=True,
-)])
+    expand='xl'
+   
+),
+html.Br(),
+])
 
 
 ]),
 
     dbc.Row([
+    dbc.Col(
+dbc.Alert(
+    [
+        html.H4("FINAL DATA", className="alert-heading"),
+        html.A("To view the data analysis and model building click here", href=    "https://nbviewer.jupyter.org/github/savio0694/SAO-PAULO-BEERCONSUMPITON-with-PYTHON/blob/main/Prediction%20%20of%20beer%20consumption.ipynb",
+ className="alert-link"),
+
+        html.Hr(),
+        
+    ],
+    color="dark",
+)
+  ), ]),
+  
+ 
+  dbc.Row([
+    dbc.Col(
+    
+  
+
+dash_table.DataTable(
+    id='table',
+    columns=[{"name": i, "id": i} for i in beer_data.columns],
+    data=beer_data.to_dict('records'),
+    page_size=15,
+     style_as_list_view=True,
+     style_data_conditional=[
+        {
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(248, 248, 248)'
+        }]
+)
+      ),
+      ]),
+      
+       dbc.Row([
 
     dbc.Col([
-#html.H5("CHOOSE DISTRIBUTION"),
+dbc.Alert(
+    [
+        html.H4("CHOOSE DISTRIBUTION", className="alert-heading"),
+        
+        
+        
+    ],
+    color="dark",
+),
 
             dcc.Dropdown(
                 id='hist-choice',
@@ -65,26 +112,29 @@ dbc.NavbarSimple(
 
             ]),
 
-dbc.Col(
-dash_table.DataTable(
-    id='table',
-    columns=[{"name": i, "id": i} for i in beer_data.columns],
-    data=beer_data.to_dict('records'),
-    page_size=15,
-     style_as_list_view=True,
-     style_data_conditional=[
-        {
-            'if': {'row_index': 'odd'},
-            'backgroundColor': 'rgb(248, 248, 248)'
-        }]
-)
-      )
+
 
 
 ]),
 
+dbc.Row([
+    dbc.Col(
+dbc.Alert(
+    [
+        html.H4("RIDGE REGRESSION MODEL", className="alert-heading"),
+        html.A("To view the data analysis and model building click here", href=    "https://nbviewer.jupyter.org/github/savio0694/SAO-PAULO-BEERCONSUMPITON-with-PYTHON/blob/main/Prediction%20%20of%20beer%20consumption.ipynb",
+ className="alert-link"),
+
+        html.Hr(),
+        
+    ],
+    color="dark",
+)
+  ), ]),
+
     dbc.Row([
 dbc.Col([
+
 
 dbc.Jumbotron([
         html.H5('CHOOSE MIN_TEMP'),
@@ -133,6 +183,8 @@ html.H3(id='output-text')
 
 
 ])
+
+
 ],fluid=True)
 ])
 
